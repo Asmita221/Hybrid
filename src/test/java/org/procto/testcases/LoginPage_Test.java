@@ -27,7 +27,7 @@ public class LoginPage_Test extends TestBase {
     }
     @Test(priority = 3)
     public void checktitle(){
-        Assert.assertEquals(login.validatetitle(),"Practo Account");
+        Assert.assertEquals(login.validatetitle(),"Practo Accounts");
     }
     @Test(priority = 4)
     public void login_test(){

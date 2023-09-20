@@ -27,10 +27,10 @@ public class ExtentReport extends TestBase implements ITestListener {
         reports = new ExtentReports();
         reports.attachReporter(htmlreport);
         //----------setting environment
-        reports.setSystemInfo("Title", "NPTEL Login");
+        reports.setSystemInfo("Title", "Procto Care");
         reports.setSystemInfo("OS", "Windows 11");
         reports.setSystemInfo("browser", "Chrome");
-        reports.setSystemInfo("created_By", "Asmita");
+        reports.setSystemInfo("created_By", "Asmita Raut");
         //----------report configuration-
         htmlreport.config().setDocumentTitle("NPTEL report");
         htmlreport.config().setReportName("NPTEL test report");
