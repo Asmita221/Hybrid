@@ -32,8 +32,8 @@ public class ExtentReport extends TestBase implements ITestListener {
         reports.setSystemInfo("browser", "Chrome");
         reports.setSystemInfo("created_By", "Asmita Raut");
         //----------report configuration-
-        htmlreport.config().setDocumentTitle("NPTEL report");
-        htmlreport.config().setReportName("NPTEL test report");
+        htmlreport.config().setDocumentTitle("Procto Care report");
+        htmlreport.config().setReportName("Procto test report");
         htmlreport.config().setTheme(Theme.DARK);
         //htmlreport.config().setTimeStampFormat("EEEE,MM,DD,hh:mm a '('zzz')'");
     }
