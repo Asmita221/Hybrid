@@ -1,5 +1,6 @@
 package org.procto.testcases;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.procto.Base.TestBase;
 import org.procto.Pages.Health_WellnessPage;
 import org.procto.Pages.LoginPage;
@@ -37,8 +38,9 @@ public class HealthWellnessPage_Test extends TestBase {
 
     }
     @Test(priority = 3,dataProvider = "getscriptData")
-    public void FillInfo(String name,String org,String No,String mail,String size,String Intr){
+    public void FillInfo(String name,String org,String No,String mail,String size,String Intr) throws InterruptedException {
         health.EnterData(name, org, No, mail, size, Intr);
+        driver.navigate().refresh();
     }
     @AfterClass
     public void close(){

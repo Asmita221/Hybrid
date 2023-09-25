@@ -48,6 +48,5 @@ public class Health_WellnessPage extends TestBase {
         Select sc1 = new Select(interestin);
         sc1.selectByVisibleText(interest);
         submit.click();
-
     }
 }
