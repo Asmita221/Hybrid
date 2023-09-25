@@ -25,7 +25,7 @@ public class ExtentReport implements ITestListener {
 
 
         String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
-        String repName = "NPTEL"+timestamp+".html";//name of report
+        String repName = "Procto"+timestamp+".html";//name of report
         html =new ExtentSparkReporter(System.getProperty("user.dir")+"//Reports//"+ repName);			//dynamic path
         report= new ExtentReports();
         report.attachReporter(html);
@@ -35,8 +35,8 @@ public class ExtentReport implements ITestListener {
 
 
         html.config().setTheme(Theme.DARK);
-        html.config().setReportName("NPTEL Reports");
-        html.config().setDocumentTitle("Report of NPTEL login");
+        html.config().setReportName("Procto Reports");
+        html.config().setDocumentTitle("Report of Procto");
 
 
 
