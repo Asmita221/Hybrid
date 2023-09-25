@@ -7,7 +7,6 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import org.openqa.selenium.WebDriver;
 import org.procto.Base.TestBase;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -17,70 +16,72 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ExtentReport extends TestBase implements ITestListener {
-    ExtentSparkReporter htmlreport;
-    ExtentReports reports;
+public class ExtentReport implements ITestListener {
+    ExtentSparkReporter html;
+    ExtentReports report;
     ExtentTest test;
-    TestBase B;
+    TestBase b;
+    public void execute() {
 
-    public void setReports() {
-        String ReportName = "Procto.html";
-        //String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
-        htmlreport = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + " "+ ReportName);
-        reports = new ExtentReports();
-        reports.attachReporter(htmlreport);
-        //----------setting environment
-        reports.setSystemInfo("Title", "Procto Care");
-        reports.setSystemInfo("OS", "Windows 11");
-        reports.setSystemInfo("browser", "Chrome");
-        reports.setSystemInfo("created_By", "Asmita Raut");
-        //----------report configuration-
-        htmlreport.config().setDocumentTitle("Procto Care report");
-        htmlreport.config().setReportName("Procto test report");
-        htmlreport.config().setTheme(Theme.DARK);
-        //htmlreport.config().setTimeStampFormat("EEEE,MM,DD,hh:mm a '('zzz')'");
+
+        String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
+        String repName = "NPTEL"+timestamp+".html";//name of report
+        html =new ExtentSparkReporter(System.getProperty("user.dir")+"//Reports//"+ repName);			//dynamic path
+        report= new ExtentReports();
+        report.attachReporter(html);
+
+        report.setSystemInfo("Machine", "Acer");
+        report.setSystemInfo("OS", "Windows10");
+
+
+        html.config().setTheme(Theme.DARK);
+        html.config().setReportName("NPTEL Reports");
+        html.config().setDocumentTitle("Report of NPTEL login");
+
+
+
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test =reports.createTest(result.getName());
-        test.log(Status.PASS, MarkupHelper.createLabel("Name of Passed test case: "+ result.getName(), ExtentColor.GREEN));
+        System.out.println(" Name of Test method  successfully executed "  +result.getName());
+        test = report.createTest(result.getName());
+        test.log(Status.PASS, MarkupHelper.createLabel("Name of passed  test method "+result.getName(), ExtentColor.GREEN));
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("Name of failed test case: "+ result.getName());
-        test =reports.createTest(result.getName());
-        test.log(Status.FAIL, MarkupHelper.createLabel("Name of failed test case: "+ result.getName(), ExtentColor.RED));
-        B = new TestBase();
+        System.out.println(" Name of Test method  Failed"  +result.getName());
+        test = report.createTest(result.getName());
+        test.log(Status.FAIL,MarkupHelper.createLabel("Name of failed test method "+result.getName(),ExtentColor.RED));
+
+        b= new TestBase();
         try {
-            B.Capture_Screenshot(result.getName());
-        } catch (IOException | InterruptedException e) {
+            b.Capture_Screenshot(result.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
     }
-
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println("Name of skip test case: "+ result.getName());
-        test =reports.createTest(result.getName());
-        test.log(Status.SKIP, MarkupHelper.createLabel("Name of Skipped test case: "+ result.getName(), ExtentColor.PURPLE));
-
+        System.out.println(" Name of Test method  Skipped"  +result.getName());
+        test = report.createTest(result.getName());
+        test.log(Status.SKIP,MarkupHelper.createLabel("Name of passed Skipped test method "+result.getName(),ExtentColor.PINK));
     }
 
     @Override
     public void onStart(ITestContext context) {
-        setReports();
-        System.out.println("Script Execution is started");
+        execute();
+
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        reports.flush();
+        report.flush();
+
     }
-
-
 }
-
-
