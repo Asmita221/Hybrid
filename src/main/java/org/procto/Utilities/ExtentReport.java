@@ -25,8 +25,8 @@ public class ExtentReport extends TestBase implements ITestListener {
 
     public void setReports() {
         String ReportName = "Procto.html";
-        String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
-        htmlreport = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + timestamp + " "+ ReportName);
+        //String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
+        htmlreport = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + " "+ ReportName);
         reports = new ExtentReports();
         reports.attachReporter(htmlreport);
         //----------setting environment
