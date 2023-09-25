@@ -14,6 +14,8 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExtentReport extends TestBase implements ITestListener {
     ExtentSparkReporter htmlreport;
@@ -23,7 +25,8 @@ public class ExtentReport extends TestBase implements ITestListener {
 
     public void setReports() {
         String ReportName = "Procto.html";
-        htmlreport = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + ReportName);
+        String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
+        htmlreport = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + timestamp + " "+ ReportName);
         reports = new ExtentReports();
         reports.attachReporter(htmlreport);
         //----------setting environment
@@ -41,7 +44,7 @@ public class ExtentReport extends TestBase implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         test =reports.createTest(result.getName());
-        test.log(Status.PASS, MarkupHelper.createLabel("Name of failed test case: "+ result.getName(), ExtentColor.GREEN));
+        test.log(Status.PASS, MarkupHelper.createLabel("Name of Passed test case: "+ result.getName(), ExtentColor.GREEN));
     }
 
     @Override

@@ -47,8 +47,9 @@ public class TestBase {
 
     }
     public void Capture_Screenshot(String Testname) throws IOException, InterruptedException {
+        String timeStamp = new SimpleDateFormat("YYYY.mm.dd.hh.mm.ss").format(new Date());
         File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        String destfilepath = System.getProperty("user.dir")+"\\Screenshots\\"+Testname+".png";
+        String destfilepath = System.getProperty("user.dir")+"\\Screenshots\\"+timeStamp+Testname+".png";
         FileUtils.copyFile(src,new File(destfilepath));
     }
 }
